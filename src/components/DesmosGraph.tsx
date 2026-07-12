@@ -87,7 +87,7 @@ const sharedOptions = {
   projectorMode: true,
   backgroundColor: "#ffffff",
   textColor: "#0f172a",
-  accentColor: "#2563eb",
+  accentColor: "#fca311",
   language: "th",
 };
 
@@ -190,11 +190,11 @@ function add2DExpressions(
 
   if (lessonType === "realFunction") {
     const x = params.x ?? 3;
-    expressions.push({ id: "main", latex: "y=2x+1", color: "#2563eb", lineWidth: 4 });
+    expressions.push({ id: "main", latex: "y=2x+1", color: "#14213d", lineWidth: 4 });
     expressions.push({
       id: "point",
       latex: `\\left(${x},${2 * x + 1}\\right)`,
-      color: "#f59e0b",
+      color: "#fca311",
       lineWidth: 5,
     });
     applyExpressions(calculator, expressions);
@@ -202,12 +202,12 @@ function add2DExpressions(
   }
 
   if (lessonType === "verticalTest") {
-    expressions.push({ id: "main", latex: "y=x^2", color: "#2563eb", lineWidth: 4 });
+    expressions.push({ id: "main", latex: "y=x^2", color: "#14213d", lineWidth: 4 });
     expressions.push({ id: "non-function", latex: "x=y^2", color: "#e11d48", lineWidth: 4 });
     expressions.push({
       id: "test-line",
       latex: "x=k",
-      color: "#f59e0b",
+      color: "#fca311",
       lineStyle: window.Desmos?.Styles?.DASHED,
       lineWidth: 3,
     });
@@ -216,7 +216,7 @@ function add2DExpressions(
   }
 
   if (latex) {
-    expressions.push({ id: "main", latex, color: "#2563eb", lineWidth: 4 });
+    expressions.push({ id: "main", latex, color: "#14213d", lineWidth: 4 });
   }
 
   applyExpressions(calculator, expressions);
@@ -384,7 +384,7 @@ function DesmosGraph({
       runWithoutUndo(calculator, () => {
         if (customExpression) {
           applyExpressions(calculator, [
-            { id: "custom", latex: customExpression, color: "#38bdf8", lineWidth: 4 },
+            { id: "custom", latex: customExpression, color: "#fca311", lineWidth: 4 },
           ]);
         } else {
           add2DExpressions(calculator, lessonType, latex, params);
@@ -411,7 +411,7 @@ function DesmosGraph({
           {
             id: "surface",
             latex: latex3D,
-            color: "#38bdf8",
+            color: "#fca311",
           },
         ]);
         scheduleResize(calculator);

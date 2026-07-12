@@ -1,4 +1,4 @@
-import { BookOpen, FlaskConical } from "lucide-react";
+import { FlaskConical } from "lucide-react";
 import type { Lesson } from "../data/lessons";
 
 type HeaderProps = {
@@ -13,9 +13,9 @@ function Header({ lessons, activeLessonId, onHome, onSelectLesson }: HeaderProps
     <header className="site-header">
       <button className="brand-button" type="button" onClick={onHome}>
         <span className="brand-mark" aria-hidden="true">
-          <BookOpen size={20} />
+          <img className="brand-logo-mark" src="/naita-math-logo-transparent.png" alt="" />
         </span>
-        <span>Function Visual Lab ม.5</span>
+        <span className="brand-title">ง่ายๆ กับฟังก์ชัน</span>
       </button>
 
       <nav className="lesson-nav" aria-label="เมนูบทเรียน">

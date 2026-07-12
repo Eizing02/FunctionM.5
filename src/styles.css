@@ -29,6 +29,7 @@
   --duration-fast: 150ms;
   --duration-normal: 240ms;
   --duration-panel: 420ms;
+  --graph-sticky-top: 92px;
   font-family: "Noto Sans Thai", "Sarabun", system-ui, sans-serif;
   font-kerning: normal;
   color: var(--text);
@@ -509,41 +510,41 @@ input:focus-visible {
 }
 
 .lesson-card-concept {
-  --lesson-rgb: 245, 197, 66;
-  --lesson-accent: var(--gold);
+  --lesson-rgb: 252, 163, 17;
+  --lesson-accent: var(--orange);
 }
 
 .lesson-card-domainRange,
 .lesson-card-step {
-  --lesson-rgb: 5, 150, 105;
-  --lesson-accent: var(--emerald);
+  --lesson-rgb: 20, 33, 61;
+  --lesson-accent: var(--prussian-blue);
 }
 
 .lesson-card-mappingAB,
 .lesson-card-exponential {
-  --lesson-rgb: 124, 58, 237;
-  --lesson-accent: var(--purple);
+  --lesson-rgb: 252, 163, 17;
+  --lesson-accent: var(--orange);
 }
 
 .lesson-card-realFunction {
-  --lesson-rgb: 6, 182, 212;
-  --lesson-accent: var(--cyan);
+  --lesson-rgb: 20, 33, 61;
+  --lesson-accent: var(--prussian-blue);
 }
 
 .lesson-card-verticalTest {
-  --lesson-rgb: 225, 29, 72;
-  --lesson-accent: var(--rose);
+  --lesson-rgb: 0, 0, 0;
+  --lesson-accent: var(--black);
 }
 
 .lesson-card-linearApplication {
-  --lesson-rgb: 245, 158, 11;
-  --lesson-accent: var(--gold);
+  --lesson-rgb: 252, 163, 17;
+  --lesson-accent: var(--orange);
 }
 
 .lesson-card-quadratic,
 .lesson-card-custom {
-  --lesson-rgb: 167, 139, 250;
-  --lesson-accent: #a78bfa;
+  --lesson-rgb: 20, 33, 61;
+  --lesson-accent: var(--prussian-blue);
 }
 
 .lesson-card-absolute {
@@ -774,7 +775,7 @@ input:focus-visible {
 .lesson-workspace,
 .concept-layout {
   display: grid;
-  grid-template-columns: minmax(300px, 0.72fr) minmax(560px, 1.28fr);
+  grid-template-columns: minmax(300px, 0.72fr) minmax(440px, 1.28fr);
   gap: 20px;
   align-items: start;
   min-width: 0;
@@ -786,9 +787,30 @@ input:focus-visible {
   min-width: 0;
 }
 
+.graph-column {
+  align-self: stretch;
+  align-content: start;
+}
+
 .lesson-panel > * {
   min-width: 0;
   animation: surface-enter var(--duration-panel) var(--ease-emphasized) both;
+}
+
+.lesson-followup {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.lesson-followup > * {
+  min-width: 0;
+  animation: surface-enter var(--duration-panel) var(--ease-emphasized) both;
+}
+
+.lesson-followup .summary-box:only-child {
+  grid-column: 1 / -1;
 }
 
 .formula-card,
@@ -1679,7 +1701,7 @@ body {
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 860px) {
   .site-header {
     align-items: flex-start;
     flex-direction: column;
@@ -1692,7 +1714,8 @@ body {
 
   .hero-section,
   .lesson-workspace,
-  .concept-layout {
+  .concept-layout,
+  .lesson-followup {
     grid-template-columns: 1fr;
   }
 
@@ -1821,11 +1844,18 @@ body {
   }
 }
 
-@media (min-width: 1041px) {
+@media (min-width: 861px) {
   .graph-column .graph-card {
     position: sticky;
-    top: 92px;
+    top: var(--graph-sticky-top);
     z-index: 2;
+    min-height: 0;
+  }
+
+  .graph-column .desmos-canvas,
+  .graph-column .graph-state {
+    height: clamp(340px, calc(100dvh - 214px), 560px);
+    min-height: 0;
   }
 }
 
@@ -1837,5 +1867,245 @@ body {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ง่ายๆ กับฟังก์ชัน brand system */
+:root {
+  --black: #000000;
+  --prussian-blue: #14213d;
+  --orange: #fca311;
+  --alabaster-grey: #e5e5e5;
+  --white: #ffffff;
+  --bg-1: var(--alabaster-grey);
+  --bg-2: var(--white);
+  --bg-3: var(--prussian-blue);
+  --text: var(--prussian-blue);
+  --muted: var(--prussian-blue);
+  --soft: #53637d;
+  --blue: var(--prussian-blue);
+  --purple: var(--prussian-blue);
+  --cyan: var(--orange);
+  --gold: var(--orange);
+  --emerald: var(--prussian-blue);
+  --rose: var(--black);
+  --border: rgba(20, 33, 61, 0.18);
+  --border-strong: rgba(20, 33, 61, 0.34);
+  --card: rgba(255, 255, 255, 0.94);
+  --card-strong: #ffffff;
+  --shadow: 0 6px 14px rgba(20, 33, 61, 0.12);
+  --shadow-soft: 0 4px 8px rgba(20, 33, 61, 0.1);
+  --shadow-glow-cyan: 0 0 0 1px rgba(252, 163, 17, 0.28);
+  --shadow-glow-gold: 0 0 0 1px rgba(252, 163, 17, 0.28);
+}
+
+body {
+  background: var(--alabaster-grey);
+}
+
+::selection {
+  color: var(--prussian-blue);
+  background: var(--orange);
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline-color: var(--orange);
+}
+
+.site-header {
+  border-bottom: 2px solid var(--prussian-blue);
+  background: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 4px 10px rgba(20, 33, 61, 0.1);
+}
+
+.brand-button {
+  color: var(--prussian-blue);
+}
+
+.brand-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.hero-credit {
+  margin: 0 0 6px;
+  color: var(--prussian-blue) !important;
+  font-size: 1rem !important;
+  font-weight: 800;
+}
+
+.hero-description {
+  margin-top: 0 !important;
+}
+
+.brand-mark {
+  position: relative;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  overflow: hidden;
+  border: 1px solid var(--prussian-blue);
+  border-radius: 12px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.brand-logo-mark {
+  position: absolute;
+  top: -5px;
+  left: -96px;
+  width: 186px;
+  max-width: none;
+  height: auto;
+}
+
+.box-icon,
+.box-icon.summary {
+  color: var(--white);
+  background: var(--prussian-blue);
+  box-shadow: none;
+}
+
+.lesson-nav {
+  scrollbar-color: var(--orange) var(--alabaster-grey);
+}
+
+.lesson-nav::-webkit-scrollbar-track {
+  background: var(--alabaster-grey);
+}
+
+.lesson-nav::-webkit-scrollbar-thumb {
+  background: var(--orange);
+}
+
+.nav-chip {
+  border-color: rgba(20, 33, 61, 0.18);
+  background: var(--white);
+  color: var(--prussian-blue);
+}
+
+.nav-chip:hover,
+.nav-chip.active {
+  border-color: var(--prussian-blue);
+  background: var(--prussian-blue);
+  color: var(--white);
+  box-shadow: none;
+}
+
+.soft-badge,
+.lesson-number,
+.section-kicker,
+.card-label,
+.lesson-order {
+  border-color: rgba(252, 163, 17, 0.52);
+  background: rgba(252, 163, 17, 0.12);
+  color: #9a5d00;
+}
+
+.primary-button {
+  color: var(--prussian-blue);
+  background: var(--orange);
+  box-shadow: 0 4px 8px rgba(252, 163, 17, 0.28);
+}
+
+.secondary-button,
+.back-button,
+.reset-button {
+  color: var(--prussian-blue);
+  background: var(--white);
+  border-color: rgba(20, 33, 61, 0.24);
+}
+
+.hero-visual {
+  display: grid;
+  place-items: center;
+  min-height: 450px;
+  padding: 16px;
+  border-color: transparent;
+  border-radius: 16px;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hero-brand-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.lesson-hero,
+.graph-card {
+  border-color: rgba(20, 33, 61, 0.2);
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.lesson-formula-banner {
+  color: var(--prussian-blue);
+  border-color: rgba(252, 163, 17, 0.66);
+  background: rgba(252, 163, 17, 0.12);
+}
+
+.lesson-card,
+.lesson-card:hover,
+.hero-note,
+.mapping-example,
+.custom-input-card,
+.example-card,
+.concept-card {
+  background: var(--white);
+  border-color: var(--border);
+}
+
+.lesson-card:hover {
+  border-color: var(--orange);
+  box-shadow: var(--shadow);
+}
+
+.formula-display {
+  border-color: rgba(20, 33, 61, 0.24);
+  background: rgba(20, 33, 61, 0.06);
+}
+
+.parameter-number-label,
+.equation-input-label input,
+.tab-switch {
+  border-color: rgba(20, 33, 61, 0.2);
+  background: var(--white);
+}
+
+.parameter-number-label:hover,
+.parameter-number-label:focus-within {
+  border-color: var(--orange);
+  background: rgba(252, 163, 17, 0.08);
+  box-shadow: 0 0 0 3px rgba(252, 163, 17, 0.14);
+}
+
+.tab-switch button.active {
+  color: var(--prussian-blue);
+  background: var(--orange);
+  box-shadow: none;
+}
+
+.desmos-canvas {
+  border-color: rgba(20, 33, 61, 0.24);
+  box-shadow: inset 0 0 0 1px rgba(20, 33, 61, 0.06);
+}
+
+.graph-state,
+.summary-box {
+  color: var(--prussian-blue);
+  background: var(--white);
+}
+
+@media (max-width: 680px) {
+  .brand-title {
+    font-size: 0.95rem;
+  }
+
+  .hero-visual {
+    min-height: 390px;
   }
 }

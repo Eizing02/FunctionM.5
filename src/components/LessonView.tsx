@@ -219,11 +219,13 @@ function LessonView({ lesson, onBack }: LessonViewProps) {
           ) : (
             visual
           )}
-
-          {rows.length > 0 && <ValueTable rows={rows} hint={getTableHint(lesson)} />}
-          <SummaryBox items={lesson.summary} />
         </div>
       </div>
+
+      <section className="lesson-followup">
+        {rows.length > 0 && <ValueTable rows={rows} hint={getTableHint(lesson)} />}
+        <SummaryBox items={lesson.summary} />
+      </section>
     </article>
   );
 }
